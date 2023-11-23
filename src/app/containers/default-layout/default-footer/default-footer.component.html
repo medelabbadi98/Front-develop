@@ -1,0 +1,11 @@
+<!--<c-footer>-->
+
+  <div class="ms-auto" >
+    <div *ngIf="isEn">
+      <flag  (click)="translateSite('en')" [code]="'us'" [size]="'lg'"  [effect]="'round'" style="cursor: pointer;"></flag>
+    </div>
+    <div *ngIf="isFr">
+      <flag  (click)="translateSite('fr')" [code]="'fr'" [size]="'lg'"  [effect]="'round'" style="cursor: pointer;"></flag>
+    </div>
+  </div>
+<!--</c-footer>-->

@@ -1,0 +1,95 @@
+<div class=" min-vh-100 d-flex flex-row align-items-center" style=" background-image:linear-gradient(to right, rgb(184, 180, 187) , rgb(94, 92, 106));">
+
+    <c-container>
+        <c-row class="justify-content-center">
+            <c-col md="8">
+                <c-card-group>
+                    <c-card class="p-4">
+                        <c-card-body>
+                            <form cForm [formGroup]="RegisterForm" [validated]="RegisterForm.valid" (ngSubmit)="onSubmit()">
+                                <h1>S'enregistrer</h1>
+                                <p class="text-medium-emphasis">Sign up</p>
+                                <c-input-group class="mb-3">
+                                    <span cInputGroupText>
+                                      <svg cIcon name="cilUser"></svg>
+                                    </span>
+                                    <input autoComplete="email" cFormControl formControlName="email" placeholder="email" [valid]=" (RegisterForm.invalid && RegisterForm.touched) ?  (RegisterForm.get('email')?.valid) ? true : false : undefined" />
+                                </c-input-group>
+                                <c-input-group class="mb-3">
+                                    <span cInputGroupText>
+                                    <svg cIcon name="cilUser"></svg>
+                                  </span>
+                                    <input autoComplete="name" cFormControl formControlName="name" placeholder="name" [valid]=" (RegisterForm.invalid && RegisterForm.touched) ?  (RegisterForm.get('name')?.valid) ? true : false : undefined" />
+                                </c-input-group>
+                                <c-input-group class="mb-3">
+                                    <span cInputGroupText>
+                                    <svg cIcon name="cilUser"></svg>
+                                  </span>
+                                    <input autoComplete="username" cFormControl formControlName="username" placeholder="username" [valid]=" (RegisterForm.invalid && RegisterForm.touched) ?  (RegisterForm.get('username')?.valid) ? true : false : undefined" />
+                                </c-input-group>
+                                <c-input-group class="mb-4">
+                                    <span cInputGroupText>
+                                      <svg cIcon name="cilLockLocked"></svg>
+                                    </span>
+                                    <input required autoComplete="password" cFormControl formControlName="password" placeholder="password" type="password" [valid]=" (RegisterForm.invalid && RegisterForm.touched) ?  (RegisterForm.get('password')?.valid) ? true : false : undefined" />
+                                </c-input-group>
+
+                                <c-input-group class="mb-4">
+                                    <span cInputGroupText>
+                                    <svg cIcon name="cilLockLocked"></svg>
+                                  </span>
+                                    <input required autoComplete="confirmPassword" cFormControl formControlName="confirmPassword" placeholder="Confirm password" type="password" [valid]=" (RegisterForm.invalid && RegisterForm.touched) ?  (RegisterForm.get('confirmPassword')?.valid) ? true : false : undefined"
+                                    />
+                                </c-input-group>
+                                <c-row>
+                                    <c-col xs="6">
+                                        <button cButton class="px-4" color="primary" type="submit">
+                                          S'enregistrer
+                                        </button>
+                                    </c-col>
+
+                                </c-row>
+                                <br><br>
+                                <c-row>
+                                    <c-col xs="6"> </c-col>
+                                    <c-col xs="2" style="margin-left:30%;">
+                                        <div class="ms-auto">
+                                            <div *ngIf="isEn">
+                                                <flag (click)="translateSite('en')" [code]="'us'" [size]="'lg'" [effect]="'round'" style="cursor: pointer;"></flag>
+                                            </div>
+                                            <div *ngIf="isFr">
+                                                <flag (click)="translateSite('fr')" [code]="'fr'" [size]="'lg'" [effect]="'round'" style="cursor: pointer;"></flag>
+                                            </div>
+                                        </div>
+                                    </c-col>
+                                </c-row>
+                            </form>
+                        </c-card-body>
+                    </c-card>
+                    <c-card [ngStyle]="{'width.%': 44}" class="text-white py-5" style="background-color: #bdb6b6;">
+                        <c-card-body class="text-center">
+                            <div>
+                                <img src="assets/images/mark-blue.png" class="responsive">
+                            </div>
+                        </c-card-body>
+                    </c-card>
+                </c-card-group>
+            </c-col>
+        </c-row>
+        <c-toaster [placement]="position" class="p-3" position="fixed">
+            <c-toast (timer)="onTimerChange($event)" (visibleChange)="onVisibleChange($event)" [visible]="visible" color="{{color}}">
+                <c-toast-header>
+                    <svg class="rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+            <rect width="100%" height="100%"  [attr.fill]="colorfill"></rect>
+        </svg> status
+                </c-toast-header>
+                <c-toast-body>
+                    <p><strong>message</strong></p>
+                    <c-progress thin>
+                        <c-progress-bar [value]="percentage" [cBgColor]="color"></c-progress-bar>
+                    </c-progress>
+                </c-toast-body>
+            </c-toast>
+        </c-toaster>
+    </c-container>
+</div>

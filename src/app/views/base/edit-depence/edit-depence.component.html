@@ -1,0 +1,50 @@
+<div class="fade-in">
+    <c-row ngPreserveWhitespaces>
+        <c-col xs="12">
+            <c-card class="p-4">
+                <c-card-body>
+                    <form cForm [formGroup]="DepenceForm" [validated]="DepenceForm.valid" (ngSubmit)="onSubmit()">
+                        <h1>Edit Depence</h1>
+
+                        <c-input-group class="mb-3">
+                            <span cInputGroupText>
+                  <svg cIcon name="cilUser"></svg>
+                </span>
+                            <input autoComplete="typeDepence" cFormControl formControlName="typeDepence" placeholder="TypeDepence" />
+                        </c-input-group>
+
+                        <c-input-group class="mb-4">
+                            <span cInputGroupText>
+                  <svg cIcon name="cilLockLocked"></svg>
+                </span>
+                            <input required autoComplete="price" cFormControl formControlName="price" placeholder="price" />
+                        </c-input-group>
+                        <c-input-group class="mb-4">
+                            <span cInputGroupText>
+                <svg cIcon name="cilLockLocked"></svg>
+              </span>
+                            <input required autoComplete="description" cFormControl formControlName="description" placeholder="Description" />
+                        </c-input-group>
+                        <c-input-group class="mb-4">
+                            <span cInputGroupText>
+              <svg cIcon name="cilLockLocked"></svg>
+            </span>
+                            <input type="dateDepence" required autoComplete="dateDepence" cFormControl formControlName="dateDepence" placeholder="Date Depence" />
+                        </c-input-group>
+                        <c-row>
+                            <c-col xs=" 6 ">
+                                <button cButton class="px-4 " color="primary " type="submit">
+                        Modifier
+                             </button>
+                            </c-col>
+                            <c-col class="text-right " xs="6 ">
+                            </c-col>
+                        </c-row>
+                        <br><br>
+
+                    </form>
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+</div>

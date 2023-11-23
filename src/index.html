@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+* CoreUI - Angular 15.1 Free Admin Template
+* @version v4.3.9
+* @link https://coreui.io/angular/
+* Copyright (c) 2017-2023 creativeLabs Łukasz Holeczek
+* License: MIT
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <base href="./">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
+    <meta content="depence app" name="keyword" />
+    <link href="" rel="icon" type="image/png">
+    <title>Depence Dashboard</title>
+</head>
+
+<body>
+    <noscript></noscript>
+    <app-root>
+        <div>
+            <!-- <i class="spinner-grow spinner-grow-sm"></i> -->
+            <center>
+                <img src="assets/images/mark-blue.png" alt="" width="400" height="400" id="loadingSpinner">
+            </center>
+            <!-- <span class="m-1">Loading...</span> -->
+        </div>
+    </app-root>
+</body>
+
+</html>
+<style>
+    @-webkit-keyframes pulse {
+        0% {
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+        }
+        50% {
+            -webkit-transform: scale3d(1.05, 1.05, 1.05);
+            transform: scale3d(1.05, 1.05, 1.05);
+        }
+        to {
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+        }
+    }
+    
+    @keyframes pulse {
+        0% {
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+        }
+        50% {
+            -webkit-transform: scale3d(1.05, 1.05, 1.05);
+            transform: scale3d(1.05, 1.05, 1.05);
+        }
+        to {
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+        }
+    }
+    
+    #loadingSpinner {
+        -webkit-animation: pulse;
+        animation: pulse;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+    }
+</style>

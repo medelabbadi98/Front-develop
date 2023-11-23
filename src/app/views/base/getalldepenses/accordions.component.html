@@ -1,0 +1,48 @@
+<c-row [gutter]="3" class="align-items-center">
+    <c-col xs="auto">
+        <label cLabel="col" for="inputPassword-3"> Search </label>
+    </c-col>
+    <c-col xs="auto">
+        <input aria-describedby="passwordHelpInline-3" cFormControl id="inputPassword-3" type="text" style="background-color: gainsboro;">
+    </c-col>
+</c-row>
+<br>
+<table bordered cTable>
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Titre</th>
+            <th scope="col">Montant</th>
+            <th scope="col">Date et heure</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of DepenceList ">
+            <td>{{ item.id }}</td>
+            <td>{{ item.typeDepence }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.dateDepence }}</td>
+
+
+            <td>
+                <div>
+                    <span>
+                      <a routerLink="/base/editdepence"(click)="myFunc($event, item.id)" class="px-0" color="link" >
+                        Update
+                      </a>
+                    </span>
+                </div>
+                <div>
+                    <span>
+                    <a href="#">
+                        Delete
+                    </a>
+                  </span>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

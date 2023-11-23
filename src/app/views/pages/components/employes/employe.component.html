@@ -1,0 +1,33 @@
+<c-row [gutter]="3" class="align-items-center">
+    <c-col xs="auto">
+        <label cLabel="col" for="inputPassword-3"> Search </label>
+      </c-col>
+   <c-col xs="auto">
+        <input
+        [(ngModel)]="searchText"
+          aria-describedby="passwordHelpInline-3"
+          cFormControl
+          id="inputPassword-3"
+          type="text"
+          style="background-color: gainsboro;">
+      </c-col>
+    </c-row>
+    <br>
+<table bordered cTable>
+    <thead>
+    <tr>
+      <th scope="col">action</th>
+      <th scope="col">Class</th>
+      <th scope="col">Heading1</th>
+      <th scope="col">Heading2</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of employeList | searchFilter:searchText ">
+      <th scope="row">1</th>
+      <td>{{item.class}}</td>
+      <td>{{item.heading1}}</td>
+      <td>{{item.heading2}}</td>
+    </tr>
+    </tbody>
+  </table>

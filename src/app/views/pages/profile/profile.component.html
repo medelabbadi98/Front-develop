@@ -1,0 +1,75 @@
+<c-row>
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-header ngPreserveWhitespaces>
+                <strong>{{'Profile_page_Title' | translate}} <c-badge color="{{colorStatus}}" shape="rounded-pill">{{ Status | translate}}</c-badge> </strong>
+
+            </c-card-header>
+            <c-card-body>
+
+                <c-row>
+                    <c-col xs>
+                        <div class="mb-3">
+                            <label cLabel for="exampleFormControlInput1">{{'Profile_page_FirstName' | translate}}</label>
+                            <input aria-label="First name" cFormControl value="{{user.username | titlecase}}" style="color: navy;" readonly/>
+                        </div>
+                    </c-col>
+                    <c-col xs>
+                        <div class="mb-3">
+                            <label cLabel for="exampleFormControlInput1">{{'Profile_page_LastName' | translate}}</label>
+                            <input aria-label="Last name" cFormControl value="{{user.name | titlecase}}" readonly/>
+                        </div>
+                    </c-col>
+
+                    <c-col xs>
+                        <div class="mb-3">
+                            <label cLabel for="exampleFormControlInput1">{{'Profile_page_Cin' | translate}}</label>
+                            <!-- <input aria-label="Cin" cFormControl value="{{user.cin | titlecase}}" style="color: navy;" readonly/> -->
+                        </div>
+                    </c-col>
+                </c-row>
+                <c-row>
+                    <c-col xs>
+                        <div class="mb-3">
+                            <label cLabel for="exampleFormControlInput1">{{'Profile_page_Birthday' | translate}}</label>
+                            <!-- <input aria-label="Birthday" cFormControl value="{{user.birthday}}" style="color: navy;" readonly/> -->
+                        </div>
+                    </c-col>
+                    <c-col xs>
+                        <div class="mb-3">
+                            <label cLabel for="exampleFormControlInput1">{{'Profile_page_Email' | translate}}</label>
+                            <!-- <input aria-label="Email" cFormControl value="{{user.email | titlecase}}" style="color: navy;" readonly /> -->
+                        </div>
+                    </c-col>
+
+                </c-row>
+
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
+
+
+
+<c-row>
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-header ngPreserveWhitespaces>
+                <strong>{{'Profile_page_employes' | translate}}</strong>
+
+            </c-card-header>
+            <c-card-body>
+
+                <center>
+                    <div *ngIf="visible">
+                        <c-spinner color="primary"> </c-spinner>
+                    </div>
+                    <div *ngIf="!visible">
+                        <app-employe></app-employe>
+                    </div>
+
+                </center>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
