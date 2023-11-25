@@ -56,9 +56,17 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { UserComponent } from './views/user/user.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { AgmCoreModule } from '@agm/core';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
+// app.module.ts
+
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -69,6 +77,7 @@ const APP_CONTAINERS = [
 @NgModule({
   declarations: [AppComponent, ...APP_CONTAINERS, UserComponent],
   imports: [
+    SocketIoModule.forRoot(config),
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -98,7 +107,7 @@ const APP_CONTAINERS = [
     CardModule,
     TableModule,
     FormsModule,
-
+    GoogleMapsModule,
     AngularCountriesFlagsModule,
     TranslateModule.forRoot({
       loader:{
