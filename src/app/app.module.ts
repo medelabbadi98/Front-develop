@@ -77,7 +77,6 @@ const APP_CONTAINERS = [
 @NgModule({
   declarations: [AppComponent, ...APP_CONTAINERS, UserComponent],
   imports: [
-    SocketIoModule.forRoot(config),
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,

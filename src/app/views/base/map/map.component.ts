@@ -1,8 +1,8 @@
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
-import * as L from 'leaflet';
+import { gpsElements } from 'src/app/models/gpsElement';
 import { MapApiService } from 'src/app/services/mapservices/map-api.service';
-import { MapService } from 'src/app/services/mapservices/map.service';
-import { WebsocketService } from 'src/app/services/web-socket.service';
+import {MapService} from 'src/app/services/mapservices/map.service';
+import { zip } from 'rxjs';
 declare const google: any;
 @Component({
   selector: 'app-map',
@@ -10,36 +10,47 @@ declare const google: any;
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit{
-  
   @ViewChild('mapContainer') mapContainer: ElementRef;
 
   map: any;
+  marker: any; 
 
-  constructor(private ngZone: NgZone) {}
-
-  ngOnInit() {
-    this.loadMap();
-    console.log('ngOnInit called');
-    // this.initializeMap();
-    // this.subscribeToCoordinates();
+  constructor(private ngZone: NgZone, private mapService: MapService, private mapApiService: MapApiService) {
+    zip(
+      this.mapService.getLatitude(),
+      this.mapService.getLongitude(),
+      this.mapService.getZoom()
+    ).subscribe(([]) => {
+      this.loadMap();
+    });
   }
 
+
+  ngOnInit(){
+   
+  }
   loadMap() {
     this.ngZone.runOutsideAngular(() => {
       try {
-        if (this.mapContainer && this.mapContainer.nativeElement) {
-          this.map = new google.maps.Map(this.mapContainer.nativeElement, {
-            center: { lat: 51.678418, lng: 7.809007 },
-            zoom: 13,
+          this.mapApiService.getElementsByImei('350612072451709').subscribe((response: gpsElements) => {
+            if (this.mapContainer && this.mapContainer.nativeElement) {
+              console.log('Marker Position:', { lat: response.x, lng: response.y });
+              this.map = new google.maps.Map(this.mapContainer.nativeElement, {
+                center: { lat: parseFloat(response.y!),lng: parseFloat(response.x!) },
+                zoom: parseFloat(response.altitude!),
+              });
+            }
+              new google.maps.Marker({
+                position: { lat: parseFloat(response.y!),lng: parseFloat(response.x!) },
+                map: this.map,
+              });
+            
           });
-        } else {
-          console.error('Map container not found or not defined.');
-        }
+        
       } catch (error) {
         console.error('Error initializing the map:', error);
       }
     });
-  
   }
 
   private initializeMap() {
@@ -75,11 +86,9 @@ export class MapComponent implements OnInit{
     // this.subscription = this.mapService.getLatitude().subscribe((latitude: number) => {
     //   this.updateMap('latitude', latitude);
     // });
-
     // this.subscription.add(this.mapService.getLongitude().subscribe((longitude: number) => {
     //   this.updateMap('longitude', longitude);
     // }));
-
     // this.subscription.add(this.mapService.getZoom().subscribe((zoom: number) => {
     //   this.updateMap('zoom', zoom);
     // }));
@@ -100,7 +109,6 @@ export class MapComponent implements OnInit{
   //       break;
   //   }
   // }
-
   // ngOnDestroy() {
   //   if (this.subscription) {
   //     this.subscription.unsubscribe();
